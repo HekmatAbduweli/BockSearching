@@ -4,12 +4,20 @@ import "./App.css";
 
 export default function App() {
   const [info, setInfo] = useState("");
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const DataFetch = async () => {
+    setLoading(true);
     try {
-      const response = await fetch(`https://openlibrary.org/search.json`);
+      const response = await fetch(
+        `https://openlibrary.org/search.json?q=${info}`
+      );
       const data = await response.json();
-      setInfo(data.results);
+      if (data != 0) {
+        setBooks(data.docs);
+        setLoading(false);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -20,14 +28,21 @@ export default function App() {
   };
 
   const searching = () => {
-    console.log(info);
+    DataFetch();
   };
+
+  useEffect(() => {
+    if (books != null) {
+      console.log(books);
+    }
+  }, [books]);
 
   return (
     <>
       <h1>Book searching</h1>
       <input type="text" value={info} onChange={inputResult} />
       <button onClick={searching}>Search</button>
+      {loading && <p>Loading...</p>}
     </>
   );
 }
