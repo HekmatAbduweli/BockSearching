@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
+import Searchresult from "./conponents/Searchresult";
 
 export default function App() {
   const [info, setInfo] = useState("");
@@ -43,17 +44,7 @@ export default function App() {
       <input type="text" value={info} onChange={inputResult} />
       <button onClick={searching}>Search</button>
       {loading && <p>Loading...</p>}
-      <ul>
-        {books.map((book, index) => (
-          <li key={index}>
-            <p>Title:{book.title}</p>{" "}
-            <p>
-              Author:
-              {book.author_name ? book.author_name.join(", ") : "Unknown"}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <Searchresult books={books}/>
     </>
   );
 }
