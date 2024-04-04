@@ -1,23 +1,23 @@
 export default function Bookcards({ book }) {
   return (
     <>
-      <p>Title:{book.title}</p>
+      <h3>Title:{book.title}</h3>
       <p>
-        <strong>First Published:</strong> {book.first_publish_year}
+        <span>First Published:</span> {book.first_publish_year}
       </p>
       <p>
-        Author:
+        <span>Author:</span>
         {book.author_name ? book.author_name.join(", ") : "Unknown"}
       </p>
       <p>
-        <strong>Average Rating:</strong>{" "}
+        <span>Average Rating:</span>{" "}
         {book.ratings_average
           ? book.ratings_average.toFixed(2)
           : "Not Available"}
       </p>
       {book.id_amazon && (
         <a
-          href={`https://www.amazon.com/s?k=${book.id_amazon}`}
+          href={`https://www.amazon.com/s?k=${book?.isbn?.[0]}`}
           target="_blank"
           rel="noopener noreferrer"
         >
