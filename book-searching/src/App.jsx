@@ -8,6 +8,28 @@ export default function App() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const JamesBondFetch = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `https://openlibrary.org/search.json?q=James+Bond`
+        );
+        const data = await response.json();
+        if (data != 0) {
+          setBooks(data.docs);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+
+    JamesBondFetch();
+
+  },[]);
+
   const DataFetch = async () => {
     setLoading(true);
     try {
@@ -44,7 +66,7 @@ export default function App() {
       <input type="text" value={info} onChange={inputResult} />
       <button onClick={searching}>Search</button>
       {loading && <p>Loading...</p>}
-      <Searchresult books={books}/>
+      <Searchresult books={books} />
     </>
   );
 }
