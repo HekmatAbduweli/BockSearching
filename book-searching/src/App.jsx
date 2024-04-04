@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
-import "./App.css";
+import "./styles/styles.scss";
 import Searchresult from "./conponents/Searchresult";
 
 export default function App() {
-  const [info, setInfo] = useState("");
+  const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -25,16 +25,14 @@ export default function App() {
       }
     };
 
-
     JamesBondFetch();
-
-  },[]);
+  }, []);
 
   const DataFetch = async () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://openlibrary.org/search.json?q=${info}`
+        `https://openlibrary.org/search.json?q=${query}`
       );
       const data = await response.json();
       if (data != 0) {
@@ -47,10 +45,14 @@ export default function App() {
   };
 
   const inputResult = (event) => {
-    setInfo(event.target.value);
+    setQuery(event.target.value);
   };
 
   const searching = () => {
+    if (query.length < 3) {
+      alert("you must have at least three characters!");
+      return;
+    }
     DataFetch();
   };
 
@@ -62,10 +64,14 @@ export default function App() {
 
   return (
     <>
-      <h1>Book searching</h1>
-      <input type="text" value={info} onChange={inputResult} />
-      <button onClick={searching}>Search</button>
-      {loading && <p>Loading...</p>}
+        <nav>
+          <h1>Book searching</h1>
+          <div className="search-bar">
+            <input type="text" value={query} onChange={inputResult} />
+            <button onClick={searching}>Search</button>
+          </div>
+          {loading && <p>Loading...</p>}
+        </nav>
       <Searchresult books={books} />
     </>
   );
