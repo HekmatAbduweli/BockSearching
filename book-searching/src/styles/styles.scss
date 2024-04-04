@@ -1,0 +1,75 @@
+body {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+
+  nav {
+    margin-top: 250px;
+    h1 {
+      font-size: 50px;
+    }
+    .search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 25px; /* Runde hjørner for en mykere look */
+  padding: 10px 20px; /* Tilpass polstringen etter behov */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Legg til en subtil skygge for dybde */
+  
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 20px; /* Runde hjørner for inputfeltet */
+  }
+
+  button {
+    background-color: #ff6347; /* En farge for knappen som skiller seg ut */
+    color: white;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 20px; /* Runde hjørner for knappen */
+    margin-left: 10px; /* Legg til litt mellomrom mellom input og knapp */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Overgangseffekt for en jevn overgang */
+  }
+
+  button:hover {
+    background-color: #ff4c2c; /* Endre fargen når knappen blir hover for en interaktiv effekt */
+  }
+}
+
+  }
+
+  main {
+    margin-top: 20px;
+    text-align: left;
+    ul {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Automatisk justering av kolonner */
+  gap: 20px; /* Mellomrom mellom elementene */
+}
+
+li {
+  background-color: #ffffff;
+  border-radius: 10px; /* Runde hjørner for en mykere look */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Legg til en subtil skygge for dybde */
+  padding: 20px; /* Tilpass polstringen etter behov */
+  transition: transform 0.3s ease; /* Overgangseffekt for en jevn animasjon */
+}
+
+li:hover {
+  transform: translateY(-5px); /* Litt løft på hover for interaktiv effekt */
+}
+
+      }
+    }
+  
+
